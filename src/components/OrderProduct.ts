@@ -10,7 +10,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
     'Cancelled. \n\nOptions:\n- Main Menu',
   );
 
-  const cancelPrompt = '\n\n_To cancel the process, reply with: Cancel_';
+  const cancelPrompt = '\n\n_To stop this, reply with: Cancel_';
 
   flow.start();
 
@@ -18,8 +18,8 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
     case 'SELECT_COUNTRY': {
       const countries = await fetchAllCountries();
 
-      let text = '*Order a product* \n\n';
-      text += 'Which country are you in? \n\n';
+      let text = '*Order your product* \n\n';
+      text += 'Where in Nairobi are you in? \n\n';
       text += countries
         .map((country, idx) => `*${idx + 1}* ${country.title}`)
         .join('\n');
@@ -70,7 +70,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
           text += cancelPrompt;
           flow.next();
         } else {
-          text += `Sorry, there are no products currently available for purchase in ${country.title}.`;
+          text += `Oops 😥, currently we don't have goods available for purchase in ${country.title}.`;
           text += '\n\nOptions:\n-Main Menu';
           flow.end();
         }
@@ -113,7 +113,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
         let text = `*${product.title}* \n\n`;
         text += `${product.description} \n\n`;
         text += '*Options:*';
-        text += '\n*1* I want to order this product';
+        text += '\n*1:* Order this product';
         text += cancelPrompt;
 
         await onSendMessage(text, {
@@ -121,7 +121,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
             parse_mode: 'Markdown',
             reply_markup: {
               keyboard: [
-                ['1 I want to order this product'],
+                ['1: Order this product'],
                 ['Cancel'],
                 ['Main Menu'],
               ] as any,
@@ -139,7 +139,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
     }
 
     case 'INPUT_NAME': {
-      const options = ['1 I want to order this product'];
+      const options = ['1: Order this product'];
       const idx = parseInt(props.text, 10) - 1;
 
       if (Number.isNaN(idx)) {
@@ -149,8 +149,8 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
         flow.end();
         props.render('**');
       } else {
-        let text = 'Great! I\'m going to ask you a few questions to get your order right.';
-        text += '\n\nWhat is your name in full?';
+        let text = 'Awesome! Let me ask you a few questions to capture your order details.';
+        text += '\n\n    *Please enter your full name*';
         text += cancelPrompt;
 
         await onSendMessage(text, {
@@ -182,7 +182,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
 
         history.setState({ ...history.getState(), name });
 
-        let text = 'Noted! What is your location? e.g. Nairobi CBD';
+        let text = 'Alright! Tell me a more *precise location*? e.g. Epic apartments, near Total Kitisuru';
         text += cancelPrompt;
 
         onSendMessage(text, {
@@ -231,7 +231,7 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
 
         history.setState({ ...history.getState(), location });
 
-        let text = 'You rock! Final question. What is your National ID Number?';
+        let text = 'We\'re almost done ⌛️⌛️! What is your National ID Number?';
         text += cancelPrompt;
 
         onSendMessage(text, {
@@ -283,9 +283,9 @@ export const OrderProduct: Component = async ({ onSendMessage, history, ...props
         // eslint-disable-next-line no-console
         console.log(history.getState());
 
-        let text = 'You made it! 🎉';
-        text += '\n\nI have noted down your order and passed it along for processing. A representative will be in touch with you.';
-        text += '\n\nThank you for choosing M-KOPA.';
+        let text = 'Successful! 🎉';
+        text += '\n\nWe have noted down your order and passed it along for processing. A representative will be in touch with you.';
+        text += '\n\nThanks for shopping at Bevanté.';
         text += '\n\nOptions:\n-Main Menu';
 
         onSendMessage(text, {

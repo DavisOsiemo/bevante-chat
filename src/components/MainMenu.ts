@@ -16,8 +16,8 @@ export const MainMenu: Component = async ({ onSendMessage, history, ...props }) 
 
   switch (flow.getCurrentStep()) {
     case 'WELCOME_SCREEN': {
-      let text = 'Welcome to *M-KOPA*';
-      text += '\n\nYou can use this bot to easily order M-KOPA products from the comfort of your whatsapp.\n\n';
+      let text = 'Welcome to *Bevanté!*';
+      text += '\n\nUse me to easily order goods on WhatsApp\n\n';
       text += options
         .map((option, idx) => `*${idx + 1}* ${option}`)
         .join('\n');
