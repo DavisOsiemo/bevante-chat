@@ -45,7 +45,7 @@ Daily Rate - *Ksh 50*
 Number of Days - *420 Days*
 Total Price - *Ksh 23,999*
 Cash Price - *Ksh 18,999*`,
-    image: 'http://www.m-kopa.com/wp-content/uploads/2014/11/device-with-new-torch.jpg',
+    image: 'https://i.pinimg.com/564x/e8/91/1d/e8911d7d31e88364c22a2cf66fa965cf.jpg',
   },
   {
     id: 2,
@@ -79,7 +79,7 @@ Extras:
 Radios - *40 days*
 Torch - *40 days*
 Torch and Radio - *80 days*`,
-    image: 'http://www.m-kopa.com/wp-content/uploads/2020/05/M-KOPA-6-Classic-Kenya-18-5-20.jpg',
+    image: 'https://i.pinimg.com/564x/b8/8c/36/b88c3622a56fba25638aa15bd161ba2e.jpg',
   },
   {
     id: 3,
