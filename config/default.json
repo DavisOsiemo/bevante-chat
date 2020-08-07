@@ -1,0 +1,18 @@
+{
+  "telegram": {
+    "token": "abcd"
+  },
+  "africastalking": {
+    "apiKey": "abcd",
+    "username": "abcd",
+    "chat": {
+      "productId" : "abcd",
+      "whatsapp": {
+        "channelNumber": "+254712345678"
+      },
+      "telegram": {
+        "channelNumber": "abcd"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+pipelines:
+  default:
+    - step:
+        name: Run Tests
+        image: node:14.4.0-slim
+        services:
+          - docker
+        caches:
+          - node
+        script:
+          - npm i
+          - npm run lint
+          - npm run ts-check
+          - npm t
+
+  branches:
+    feature/*:
+      - step:
+          name: Run Tests
+          image: node:14.4.0-slim
+          services:
+            - docker
+          caches:
+            - node
+          script:
+            - npm i
+            - npm run lint
+            - npm run ts-check
+            - npm t
+      - step:
+          name: Build
+          image: node:14.4.0
+          script:
+            - ./bin/pipelines.sh build $BITBUCKET_TAG
+          services:
+            - docker
